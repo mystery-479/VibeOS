@@ -12,15 +12,25 @@ Build VibeOS from a Linux environment.
 
 On Windows, WSL2 with Ubuntu is a convenient option. Keep the project inside the Linux filesystem for better build performance.
 
-Required tools include:
+At minimum, the host needs:
 
 - git
 - make
-- a C compiler/toolchain
+- GCC/G++
+- `bc`
 - standard Buildroot host dependencies
 - QEMU for running the generated image
 
 Buildroot provides a host-dependency checker under `support/dependencies/dependencies.sh`.
+
+On Kali/Debian, install the immediately required dependency with:
+
+```bash
+sudo apt update
+sudo apt install -y bc
+```
+
+If Buildroot reports another missing host dependency, install that package and rerun the build.
 
 ## Buildroot version
 
@@ -38,6 +48,8 @@ bash scripts/build.sh
 ```
 
 The first build downloads the required toolchains and source packages, so it can take a while.
+
+The build output is generated under `output/`.
 
 ## Run
 
