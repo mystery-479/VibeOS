@@ -20,7 +20,7 @@ Core principles:
 
 **Phase:** 0 — Project bootstrap
 
-The repository currently contains the project specification and architecture notes. The next implementation milestone is a minimal Linux image that boots in QEMU.
+The repository now contains the project specification, architecture notes, and the first reproducible Buildroot/QEMU development scripts.
 
 ### First milestone
 
@@ -62,7 +62,7 @@ Unnecessary work ->  avoided
 ## Roadmap
 
 ### v0.1 — Boot
-- Build a minimal Linux-based image.
+- Build a minimal Linux-based image with Buildroot 2026.08.
 - Boot it in QEMU.
 - Reach a shell.
 - Verify basic CPU, memory, process, and filesystem behavior.
@@ -86,20 +86,24 @@ Unnecessary work ->  avoided
 
 ## Development
 
-Early development is expected to use:
+Early development uses:
 
 - Linux kernel
-- Buildroot or another minimal Linux build system
-- QEMU for safe virtualized testing
+- Buildroot 2026.08
+- QEMU
 - C and shell scripting where appropriate
 
 Physical hardware is **not** the starting point. VibeOS will be developed and tested in a virtual machine first.
+
+See [Development](docs/development.md) for setup and build commands.
 
 ## Repository Layout
 
 ```
 README.md               Project overview and roadmap
 docs/architecture.md   System architecture and design principles
+docs/development.md    Build and development instructions
+scripts/                Bootstrap, build, and QEMU launch helpers
 ```
 
 This repository is the source of truth for the project. Major design and implementation decisions should be documented here as VibeOS evolves.
