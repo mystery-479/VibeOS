@@ -5,15 +5,15 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 BUILDROOT_VERSION="2026.08"
 BUILDROOT_DIR="${ROOT_DIR}/.buildroot"
 
-if ! command -v git >/dev/null 2>&1; then
-    echo "error: git is required"
-    exit 1
-fi
-
-if ! command -v make >/dev/null 2>&1; then
-    echo "error: make is required"
-    exit 1
-fi
+for cmd in git make bc; do
+    if ! command -v "${cmd}" >/dev/null 2>&1; then
+        echo "error: ${cmd} is required"
+        if [[ "${cmd}" == "bc" ]]; then
+            echo "install on Kali/Debian: sudo apt install -y bc"
+        fi
+        exit 1
+    fi
+done
 
 if [[ ! -d "${BUILDROOT_DIR}/.git" ]]; then
     echo "==> Cloning Buildroot ${BUILDROOT_VERSION}"
