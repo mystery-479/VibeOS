@@ -6,7 +6,13 @@ IMAGE_DIR="${ROOT_DIR}/output/images"
 
 if [[ ! -f "${IMAGE_DIR}/bzImage" ]]; then
     echo "error: ${IMAGE_DIR}/bzImage not found."
-    echo "run: ./scripts/build.sh"
+    echo "run: bash scripts/build.sh"
+    exit 1
+fi
+
+if [[ ! -f "${IMAGE_DIR}/rootfs.ext2" ]]; then
+    echo "error: ${IMAGE_DIR}/rootfs.ext2 not found."
+    echo "run: bash scripts/build.sh"
     exit 1
 fi
 
@@ -20,5 +26,6 @@ exec qemu-system-x86_64 \
     -m 512M \
     -smp 2 \
     -kernel "${IMAGE_DIR}/bzImage" \
-    -append "console=ttyS0" \
+    -drive "file=${IMAGE_DIR}/rootfs.ext2,format=raw,if=virtio" \
+    -append "root=/dev/vda console=ttyS0" \
     -nographic
