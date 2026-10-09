@@ -23,11 +23,17 @@ At minimum, the host needs:
 
 Buildroot provides a host-dependency checker under `support/dependencies/dependencies.sh`.
 
-On Kali/Debian, install the immediately required dependency with:
+On Kali/Debian, install the immediately required build dependency with:
 
 ```bash
 sudo apt update
 sudo apt install -y bc
+```
+
+Install QEMU for the x86_64 target with:
+
+```bash
+sudo apt install -y qemu-system-x86
 ```
 
 If Buildroot reports another missing host dependency, install that package and rerun the build.
